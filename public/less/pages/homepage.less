@@ -16,10 +16,55 @@
         margin-bottom: 10px;
     }
 
+    .filter-posts {
+        margin-top: 10vh;
+        display: inline-flex;
+        align-items: stretch;
+        padding-right: 1rem;
+        background: @primaryFontColor;
+
+        .category {
+            color: @primaryBackgroundColor;
+            display: flex;
+            
+            & > div {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                padding: 1rem;
+            }
+            
+            .active {
+                background: @secondaryColor;
+            }
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            input {
+                margin: 2vh 0 2vh 2vh;
+                padding: 1vh;
+            }
+            button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                background: @tertiaryColor;
+                position: relative;
+                left: -1px;
+            }
+            i {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
     .posts {
+        margin-top: 6vh;
         display: flex;
         flex-wrap: wrap;
-        padding-top: 10vh;
         
         .post-preview {
             width: 30%;
