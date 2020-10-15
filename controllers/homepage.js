@@ -1,6 +1,14 @@
+const PostsModel = require("../models/posts/index");
+
 class HomepageController {
-    static renderHomepage(req, res){
-        res.render("homepage")
+    static async renderHomepage(req, res){
+        try{
+            const posts = await PostsModel.getAll();
+            res.render("homepage", {posts});
+        }catch(err){
+            console.log(err);
+            res.render("homepage", {err});
+        }
     }
 }
 
