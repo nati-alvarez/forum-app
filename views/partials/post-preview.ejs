@@ -1,0 +1,23 @@
+<div class="post-preview">
+    <div class="community">
+        <%= post.community_name %>
+    </div>
+    <div class="content">
+        <div class="author">
+            <img width="35px" height="35px" src="https://res.cloudinary.com/dtbudl0yx/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/10/user-1633249_1280.png"/>
+            <%= post.author_username %>
+        </div>
+        <h3><%= post.post_title %></h3>
+    </div>
+    <div class="stats">
+        <div class="messages">
+            9 <i class="typcn typcn-messages"></i><%= post.messages %>
+        </div>
+        <div class="views">
+            38 <i class="typcn typcn-eye"></i><%= post.views %>
+        </div>
+        <div class="likes">
+            12 <i class="typcn typcn-thumbs-up"></i><%= post.likes %>
+        </div>
+    </div>
+</div>

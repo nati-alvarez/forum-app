@@ -11,6 +11,12 @@
     <%- include("partials/nav") %>
     <main class="homepage">
         <%- include("partials/site-news") %>
+        <div class="posts">
+            <% posts.forEach(post=>{ %>
+                <%- include("partials/post-preview", {post})%>
+            <%})%>
+        </div>
     </main>
 </body>
+<script src="/js/animations.js"></script>
 </html>
