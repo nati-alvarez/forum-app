@@ -1,0 +1,80 @@
+.post-preview {
+    border: 1px solid @primaryFontColor;
+    padding-bottom: 1rem;
+    transition: box-shadow 200ms ease-out;
+    position: relative;
+
+    &.hover {
+        cursor: pointer;
+        box-shadow: -5px 5px 10px #a5a5a5;
+        animation: shift 200ms linear forwards;
+    }
+
+    &.out {
+        animation: unshift 200ms linear forwards;   
+    }
+
+    @keyframes shift {
+        from {
+            top:0px;
+            left: 0px;
+        }
+        to {
+            top: -10px;
+            left: 10px;
+        }
+    }
+
+    @keyframes unshift {
+        from {
+            top: -10px;
+            left: 10px;
+        }
+        to {
+            top: 0px;
+            left: 0px;
+        }
+    }
+
+    .community {
+        text-transform: uppercase;
+        text-align: center;
+        background: @primaryFontColor;
+        color: @primaryBackgroundColor;
+        font-weight: bold;
+        padding: .6rem 1rem;
+        left: -1px;
+        width: calc(100% + 2px);
+        position: relative;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    .author {
+        margin-bottom: 2vh;
+    }
+
+    .author img {
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    h3 {
+        margin: 4vh 0;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: center;
+        
+        & > div {
+            margin: 0px 5vh;
+        }
+
+        i {
+            font-size: 1.6rem;
+        }
+    }
+}
