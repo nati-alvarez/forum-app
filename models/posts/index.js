@@ -4,7 +4,11 @@ class PostsModel {
     static queryBuilder = db;
     
     static getAll(category, keyword){
-        const categories = {"Best": "likes", "Popular": "views", "New": "Post.id"};
+        const categories = new Map();
+        categories.set("Best", "likes");
+        categories.set("Popular", "views");
+        categories.set("New", "Post.id");
+
         const query =  this.queryBuilder("Post")
         .join("Community", "Post.community_id", "Community.id")
         .join("User", "Post.author_id", "User.id")
@@ -25,7 +29,7 @@ class PostsModel {
             query.where(db.raw('LOWER("Post".title) LIKE LOWER(?)', ['%' + keyword + '%']));
         }
         if(category){
-            query.orderBy(categories[category], "desc");
+            query.orderBy(categories.get(category), "desc");
         }
         return query;
     }
