@@ -1,12 +1,12 @@
 <div class="filter-posts">
     <div class="category">
-        <div class="active">Popular</div>
-        <div>Best</div>
-        <div>New</div>
+        <div onclick="setCategory(event, 'Popular')" class="active">Popular</div>
+        <div onclick="setCategory(event, 'Best')">Best</div>
+        <div onclick="setCategory(event, 'New')">New</div>
     </div>
     <div class="search">
-        <input placeholder="Search posts" type="text">
-        <button>
+        <input onkeyup="searchPosts(event)" placeholder="Search posts" type="text">
+        <button onclick="searchPosts(event)">
             <i class="typcn typcn-zoom"></i>
         </button> 
     </div>
