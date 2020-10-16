@@ -318,6 +318,9 @@ nav .logo i {
   height: 100%;
   padding: 1rem;
 }
+.homepage .filter-posts .category > div:hover {
+  cursor: pointer;
+}
 .homepage .filter-posts .category .active {
   background: #e34275;
 }
