@@ -3,8 +3,9 @@ const db = require("../db");
 class PostsModel {
     static queryBuilder = db;
     
-    static getAll(){
-        return this.queryBuilder("Post")
+    static getAll(category, keyword){
+        const categories = {"Best": "likes", "Popular": "views", "New": "Post.id"};
+        const query =  this.queryBuilder("Post")
         .join("Community", "Post.community_id", "Community.id")
         .join("User", "Post.author_id", "User.id")
         .leftJoin("View", "Post.id", "View.post_id")
@@ -20,6 +21,13 @@ class PostsModel {
         "Post.title as post_title", "Post.body as post_body",
         "User.username as author_username", "User.pfp as author_pfp",
         "User.id as author_id");
+        if(keyword){
+            query.where(db.raw('LOWER("Post".title) LIKE LOWER(?)', ['%' + keyword + '%']));
+        }
+        if(category){
+            query.orderBy(categories[category], "desc");
+        }
+        return query;
     }
 
     static getById(id){
