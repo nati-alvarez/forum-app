@@ -26,3 +26,45 @@ function setActiveTab (e){
 
     e.target.classList.add("active");
 }
+
+class RequestStatus {
+    /**
+     * Create an object to represent the status of an AJAX request
+     * @param {String} selector the querySelector tag of the element the request status will be shown in
+     */
+    constructor(selector){
+        this.loading = false,
+        this.error = null
+        this.statusContainer = document.querySelector(selector)
+    }
+
+    /**
+     * Render the loading message
+     */
+    renderLoading(){
+        this.loading = true;
+        this.error = null;
+        this.statusContainer.textContent = "";
+        this.statusContainer.textContent = "loading..."
+    }
+
+    /**
+     * Render the error message
+     * @param {String} err the error message to be shown 
+     */
+    renderError(err){
+        this.error = err;
+        this.loading = false;
+        this.statusContainer.textContent = "";
+        this.statusContainer.textContent = this.error;
+    }
+
+    /**
+     * Clear loading status on a successful request
+     */
+    success(){
+        this.loading = false;
+        this.statusContainer.textContent = "";
+    }
+
+}

@@ -180,6 +180,7 @@ button.secondary {
 nav {
   position: sticky;
   top: 0px;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   background: #5df043;

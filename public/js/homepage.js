@@ -1,5 +1,6 @@
 let category = "Popular";
 let keyword = "";
+const requestStatus = new RequestStatus(".posts");
 
 /**
  * Sets category of posts to render, and queries db with category filter
@@ -9,7 +10,7 @@ let keyword = "";
 async function setCategory(e, value){
     // prevents uncessary backend call
     //if tab is already active, there is no need to filter by category the
-    //user is a;ready in
+    //user is already in
     if(e.target.className === "active") return;
 
     //clears input when switching categories
@@ -18,8 +19,16 @@ async function setCategory(e, value){
 
     setActiveTab(e)
     category = value;
-    const res = await getPosts(category, keyword);
-    renderPosts(res.posts);
+
+    try{
+        requestStatus.renderLoading();
+        const res =  await getPosts(category, keyword);
+        requestStatus.success();
+        renderPosts(res.posts);
+    }catch(err){
+        console.log(typeof err);
+        requestStatus.renderError(err.message);
+    }
 }
 
 /**
@@ -31,8 +40,14 @@ async function searchPosts(e){
     if(e.keyCode === 13 || e.currentTarget.nodeName === "BUTTON"){
         const keywordInput = document.querySelector(".filter-posts .search input");
         keyword = keywordInput.value;
-        const res = await getPosts(category, keyword);
-        renderPosts(res.posts);
+        try {
+            requestStatus.renderLoading();
+            const res = await getPosts(category, keyword);
+            requestStatus.success();
+            renderPosts(res.posts);
+        }catch(err){
+            requestStatus.renderError(err.message)
+        }
     }
 }
 
