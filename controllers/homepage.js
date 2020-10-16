@@ -4,10 +4,10 @@ class HomepageController {
     static async renderHomepage(req, res){
         try{
             const posts = await PostsModel.getAll();
-            res.render("homepage", {posts});
+            res.render("homepage", {posts, err: null});
         }catch(err){
             console.log(err);
-            res.render("homepage", {err});
+            res.render("homepage", {err, posts: null});
         }
     }
 }

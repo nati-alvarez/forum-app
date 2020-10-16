@@ -11,12 +11,15 @@
     <%- include("partials/nav") %>
     <main class="homepage">
         <%- include("partials/site-news") %>
-        
         <%- include("partials/filter-posts") %>
         <div class="posts">
+            <% if(!err) {%>
             <% posts.forEach(post=>{ %>
                 <%- include("partials/post-preview", {post})%>
-            <%})%>
+            <%})}%>
+            <% if (err){%>
+                <%= err %>
+            <%}%>
         </div>
     </main>
 </body>
