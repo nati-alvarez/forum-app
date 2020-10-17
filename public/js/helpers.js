@@ -15,6 +15,50 @@ async function getPosts(category, keyword){
 }
 
 /**
+ * Sets event listener on window scroll to see if posts have been scrolled to the bottom,
+ * If posts are scrolled to bottom it gets 20 more posts from db
+ * @param {String} className the class name given to post elements
+ * @param {Object} filters the filters that the user is browising
+ */
+function lastPostInView(className, filters){
+    const posts = document.querySelectorAll(className);
+    const post = posts[posts.length - 1];
+    
+    const postCoords = getElementCoords(post);
+    if(!window.eventhandler)
+        window.eventhandler = isInView.bind(this, postCoords, post, filters);
+    else {
+        window.removeEventListener("scroll", window.eventhandler);   
+        window.eventhandler = isInView.bind(this, postCoords, post, filters);
+    }
+    window.addEventListener("scroll", window.eventhandler);
+}
+
+function isInView(postCoords, post, filters){
+    console.log(window.scrollY)
+    if(window.scrollY >= (postCoords.top - post.clientHeight) - 165){
+        console.log(filters.category, filters.keyword)
+    } 
+}
+
+
+
+/**
+ * Gets the x and y position of an element
+ * @param {HTMLElement} el the html element to get the coordinates of 
+ */
+function getElementCoords( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
+
+/**
  * Clears active class on .filter-posts category tabs and sets active class on clicked tab
  * @param {Event} e the event object 
  */

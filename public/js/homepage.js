@@ -1,5 +1,11 @@
-let category = "Popular";
-let keyword = "";
+//using and object for filters so I can pass them to the lastPostInView function by reference
+//this way, it will always have access to the updated values and the event listener will only 
+//need to be set once at the start
+const filters = {
+    category: "Popular",
+    keyword: "",
+}
+
 const requestStatus = new RequestStatus(".posts");
 
 /**
@@ -14,15 +20,15 @@ async function setCategory(e, value){
     if(e.target.className === "active") return;
 
     //clears input when switching categories
-    keyword = ""
+    filters.keyword = "";
     document.querySelector(".filter-posts .search input").value = "";
 
     setActiveTab(e)
-    category = value;
+    filters.category = value;
 
     try{
         requestStatus.renderLoading();
-        const res =  await getPosts(category, keyword);
+        const res =  await getPosts(filters.category, filters.keyword);
         requestStatus.success();
         renderPosts(res.posts);
     }catch(err){
@@ -39,10 +45,10 @@ async function searchPosts(e){
     //triggers on enter key press in input or if search button is clicked
     if(e.keyCode === 13 || e.currentTarget.nodeName === "BUTTON"){
         const keywordInput = document.querySelector(".filter-posts .search input");
-        keyword = keywordInput.value;
+        filters.keyword = keywordInput.value;
         try {
             requestStatus.renderLoading();
-            const res = await getPosts(category, keyword);
+            const res = await getPosts(filters.category, filters.keyword);
             requestStatus.success();
             renderPosts(res.posts);
         }catch(err){
@@ -63,6 +69,7 @@ function renderPosts(posts){
         postsContainer.appendChild(postPreview);
     });
     postPreviewAnimations();
+    lastPostInView(".post-preview", filters);
 }
 
 /**
@@ -125,3 +132,5 @@ function createPostPreview (post){
     postPreview.append(community, content, stats);
     return postPreview;
 }
+
+lastPostInView(".post-preview", filters);
