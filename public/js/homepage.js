@@ -27,6 +27,8 @@ async function setCategory(e, value){
     setActiveTab(e)
     filters.category = value;
 
+    pageCounter = 0;
+
     try{
         requestStatus.renderLoading();
         const res =  await getPosts(filters.category, filters.keyword);
@@ -47,6 +49,7 @@ async function searchPosts(e){
     if(e.keyCode === 13 || e.currentTarget.nodeName === "BUTTON"){
         const keywordInput = document.querySelector(".filter-posts .search input");
         filters.keyword = keywordInput.value;
+        pageCounter = 0;
         try {
             requestStatus.renderLoading();
             const res = await getPosts(filters.category, filters.keyword);
@@ -70,7 +73,6 @@ function lastPostInView(className, filters){
     const postCoords = getElementCoords(post);
     
     async function isInView(){
-        console.log(window.scrollY, (postCoords.top - post.clientHeight) - 200)
         if(window.scrollY >= (postCoords.top - post.clientHeight) - 200){
             window.removeEventListener("scroll", window.inViewEventHandler);
             const res = await getPosts(filters.category, filters.keyword, ++pageCounter);
