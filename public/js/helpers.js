@@ -5,44 +5,14 @@
  * @returns {Promise} promise of filtered posts
  * @returns {Error} error object
  */
-async function getPosts(category, keyword){
+async function getPosts(category, keyword, startFrom){
     try{
-        const res = await fetch(`/posts?category=${category}&keyword=${keyword}`)
+        const res = await fetch(`/posts?category=${category}&keyword=${keyword}&startFrom=${startFrom}`)
         return res.json();
     }catch(err){
         console.log(err);
     }
 }
-
-/**
- * Sets event listener on window scroll to see if posts have been scrolled to the bottom,
- * If posts are scrolled to bottom it gets 20 more posts from db
- * @param {String} className the class name given to post elements
- * @param {Object} filters the filters that the user is browising
- */
-function lastPostInView(className, filters){
-    const posts = document.querySelectorAll(className);
-    const post = posts[posts.length - 1];
-    const postCoords = getElementCoords(post);
-    
-    function isInView(){
-        if(window.scrollY >= (postCoords.top - post.clientHeight) - 165){
-            console.log(post.dataset.post_id)
-            window.removeEventListener("scroll", window.inViewEventHandler);
-        }
-    }
-
-    if(!window.inViewEventHandler)
-        window.inViewEventHandler = isInView;
-    else {
-        window.removeEventListener("scroll", window.inViewEventHandler);   
-        window.inViewEventHandler = isInView;
-    }
-
-    window.addEventListener("scroll", window.inViewEventHandler);
-}
-
-
 
 /**
  * Gets the x and y position of an element
