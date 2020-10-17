@@ -1,10 +1,11 @@
 //using and object for filters so I can pass them to the lastPostInView function by reference
 //this way, it will always have access to the updated values and the event listener will only 
-//need to be set once at the start
+//need to be set once at the start and for rendering new posts
 const filters = {
     category: "Popular",
     keyword: "",
 }
+let pageCounter = 0;
 
 const requestStatus = new RequestStatus(".posts");
 
@@ -58,6 +59,35 @@ async function searchPosts(e){
 }
 
 /**
+ * Sets event listener on window scroll to see if posts have been scrolled to the bottom,
+ * If posts are scrolled to bottom it gets 20 more posts from db
+ * @param {String} className the class name given to post elements
+ * @param {Object} filters the filters that the user is browsing
+ */
+function lastPostInView(className, filters){
+    const posts = document.querySelectorAll(className);
+    const post = posts[posts.length - 1];
+    const postCoords = getElementCoords(post);
+    
+    async function isInView(){
+        if(window.scrollY >= (postCoords.top - post.clientHeight) - 165){
+            window.removeEventListener("scroll", window.inViewEventHandler);
+            const res = await getPosts(filters.category, filters.keyword, ++pageCounter);
+            if (res.posts.length > 0) renderMorePosts(res.posts);
+        }
+    }
+
+    if(!window.inViewEventHandler)
+        window.inViewEventHandler = isInView;
+    else {
+        window.removeEventListener("scroll", window.inViewEventHandler);   
+        window.inViewEventHandler = isInView;
+    }
+
+    window.addEventListener("scroll", window.inViewEventHandler);
+}
+
+/**
  * Renders .post-preview elements to .posts container on homepage
  * @param {Array} posts - array of posts from db
  */
@@ -65,6 +95,20 @@ function renderPosts(posts){
     const postsContainer = document.querySelector(".posts");
     postsContainer.innerHTML = "";
     posts.forEach(post => {
+        const postPreview = createPostPreview(post);
+        postsContainer.appendChild(postPreview);
+    });
+    postPreviewAnimations();
+    lastPostInView(".post-preview", filters);
+}
+
+/**
+ * Renders additional posts gotten from db when user finishes scrolling to bottom 
+ * @param {Array} posts newly loaded posts 
+ */
+function renderMorePosts(posts){
+    const postsContainer = document.querySelector(".posts");
+    posts.forEach(post=>{
         const postPreview = createPostPreview(post);
         postsContainer.appendChild(postPreview);
     });
