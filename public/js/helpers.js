@@ -23,22 +23,23 @@ async function getPosts(category, keyword){
 function lastPostInView(className, filters){
     const posts = document.querySelectorAll(className);
     const post = posts[posts.length - 1];
-    
     const postCoords = getElementCoords(post);
-    if(!window.eventhandler)
-        window.eventhandler = isInView.bind(this, postCoords, post, filters);
-    else {
-        window.removeEventListener("scroll", window.eventhandler);   
-        window.eventhandler = isInView.bind(this, postCoords, post, filters);
+    
+    function isInView(){
+        if(window.scrollY >= (postCoords.top - post.clientHeight) - 165){
+            console.log(post.dataset.post_id)
+            window.removeEventListener("scroll", window.inViewEventHandler);
+        }
     }
-    window.addEventListener("scroll", window.eventhandler);
-}
 
-function isInView(postCoords, post, filters){
-    console.log(window.scrollY)
-    if(window.scrollY >= (postCoords.top - post.clientHeight) - 165){
-        console.log(filters.category, filters.keyword)
-    } 
+    if(!window.inViewEventHandler)
+        window.inViewEventHandler = isInView;
+    else {
+        window.removeEventListener("scroll", window.inViewEventHandler);   
+        window.inViewEventHandler = isInView;
+    }
+
+    window.addEventListener("scroll", window.inViewEventHandler);
 }
 
 
