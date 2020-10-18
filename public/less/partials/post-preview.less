@@ -1,7 +1,7 @@
 .post-preview {
     border: 1px solid @primaryFontColor;
-    padding-bottom: 1rem;
     transition: box-shadow 200ms ease-out;
+    padding-bottom: 2rem;
     position: relative;
 
     &.hover {
@@ -66,12 +66,11 @@
     }
 
     .stats {
+        position: absolute;
+        bottom: 1rem;
+        width: 100%;
         display: flex;
-        justify-content: center;
-        
-        & > div {
-            margin: 0px 5vh;
-        }
+        justify-content: space-evenly;
 
         i {
             font-size: 1.6rem;

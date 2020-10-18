@@ -9,9 +9,21 @@ nav {
     padding: 1vh 2vh;
     box-shadow: 2px 2px 0px 2px darken(@primaryColor, 20%);
     margin-bottom: 2px;//compenstates for box-shadow so that it doesn't overlap content
+    flex-wrap: wrap;
 
     .search-site {
         flex: 2;
+
+        @media (max-width: 800px){
+            flex: 1;
+        }
+
+        @media (max-width: 600px){
+            order: 3;
+            width: 100%;
+            flex: auto;
+            padding-top: 2vh;
+        }
 
         input {
             background: @primaryBackgroundColor;
@@ -19,16 +31,33 @@ nav {
             padding: .8vh 1vh;
             width: 100%;
             max-width: 300px;
+
+            @media (max-width: 600px){
+                display: block;
+                margin: 0 auto;
+            }
         }
     }
 
     .logo {
+        flex: 1;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
         height: calc(100% + 1vh);
         width: 60px;
         top: -1vh;
+
+        @media (max-width: 800px){
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
+        }
+
+        @media (max-width: 600px){
+            flex: 0;
+        }
 
         i {
             font-size: 1.6rem;
@@ -41,6 +70,26 @@ nav {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            @media (max-width: 800px){
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                height: auto;
+                border-radius: 0px;
+            }
+        }
+    }
+    
+    .auth-buttons {
+        flex: 1;
+
+        button {
+            float: right;
+        }
+        .login {
+            margin-right: 10px;
         }
     }
 }
