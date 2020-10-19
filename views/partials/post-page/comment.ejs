@@ -1,0 +1,25 @@
+<div class="comment">
+    <% console.log(comment.replies) %>
+    <div class="author">
+        <div class="box">
+            <img width="25" src="<%= comment.author_pfp %>"/>
+            <p><%= comment.author_username %></p>
+        </div>
+    </div>
+    <div class="body">
+        <p><%= comment.comment_body %></p>
+    </div>
+    <div class="stats">
+        <div class="likes">
+            <%= comment.likes %> <i class="typcn typcn-thumbs-up"></i>
+        </div>
+        <div class="dislikes">
+            <%= comment.dislikes %> <i class="typcn typcn-thumbs-down"></i>
+         </div>
+    </div>
+    <div class="replies">
+        <% comment.replies.forEach(reply=>{%>
+            <%- include("reply", {reply}) %>
+        <% })%>
+    </div>
+</div>
