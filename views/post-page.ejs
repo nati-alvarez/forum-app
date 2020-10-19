@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css"/>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <%- include("partials/nav") %>
+    <main class="post-page">
+        <%- include ("partials/post-page/post", {post})%>
+        <div class="comments">
+            <h3>Comments</h3>
+            <% post.comments.forEach(comment=>{ %>
+                <%- include("partials/post-page/comment", {comment})%>
+            <% })%>
+        </div>
+    </main>
+</body>
+<%- include("partials/shared-scripts") %>
+</html>
