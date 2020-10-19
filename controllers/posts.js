@@ -11,6 +11,16 @@ class PostsController {
             res.status(500).json({posts: null, err});
         }
     }
+
+    static async renderPost(req, res){
+        try {
+            const {post_id} = req.params;
+            const post = await PostsModel.getById(post_id);
+            res.render("post-page", {post, err: null});
+        }catch(err){
+            console.log(err);
+        }
+    }
 }
 
 module.exports = PostsController;
