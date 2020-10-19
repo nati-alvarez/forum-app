@@ -60,6 +60,7 @@
             border-top: 3px solid @secondaryColor;
             position: relative;
             margin-top: 5vh;
+            margin-bottom: 10vh;
             padding: 2rem 1rem 1rem 1rem;
             text-align: center;
         }
@@ -104,5 +105,36 @@
                 font-size: 1.4rem;
             }
         }
+        
+        .replies {
+            padding-left: 10%;
+            margin-top: 5vh;
+            border-left: 3px solid darken(@secondaryBackgroundColor, 20%);
+        }
+
+        .reply {
+            margin-top: 10vh;
+            border-top: 3px solid @primaryColor;
+            padding: 2rem 1rem 1rem 1rem;
+            position: relative;
+            left: -6%;
+
+            .author {
+                background: @secondaryColor;
+                display: flex;
+                align-items: center;
+                padding: .4rem 1rem;
+                font-size: .8rem;
+
+                img {
+                    border-radius: 50%;
+                }
+            }
+
+            .content {
+                position: relative;
+            }
+        }
     }
+
 }
