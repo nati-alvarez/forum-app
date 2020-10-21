@@ -180,6 +180,9 @@ button.secondary {
   background: #4290e3;
   color: #fffded;
 }
+.error {
+  color: crimson;
+}
 nav {
   position: sticky;
   top: 0px;
@@ -577,4 +580,39 @@ nav .auth-buttons .login {
 }
 .post-page .comments .reply .content {
   position: relative;
+}
+.login-page {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  margin-top: 10vh;
+  padding: 2rem;
+}
+.login-page .form-field {
+  margin: 5vh 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.login-page .form-field label {
+  font-size: 0.8rem;
+  width: 100%;
+  margin-bottom: 1vh;
+  text-transform: uppercase;
+  color: #e34275;
+  font-weight: bold;
+}
+.login-page .form-field input {
+  width: 100%;
+  border: none;
+  padding: 0.4rem;
+}
+.login-page button {
+  margin-bottom: 2vh;
+}
+.login-page a {
+  color: #4290e3;
+}
+.login-page .status {
+  margin-top: 2vh;
 }
