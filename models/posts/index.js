@@ -44,7 +44,7 @@ class PostsModel {
             const post = await this.queryBuilder("Post")
             .join("Community", "Community.id", "Post.community_id")
             .join("User", "User.id", "Post.author_id")
-            .join("View", "View.post_id", "Post.id")
+            .leftJoin("View", "View.post_id", "Post.id")
             .leftJoin("Post_Vote as Like", function(){
                 this.on("Like.post_id", "Post.id");
                 this.andOn("Like.status", ">", 0);
@@ -60,6 +60,10 @@ class PostsModel {
             .count({views: "View.post_id", likes: "Like.id", dislikes: "Dislike.id"})
             .groupBy("Post.id", "User.id", "Community.id")
             .first();
+
+            if(!post){
+                return null;
+            };
 
             const comments = await this.queryBuilder("Comment")
             .join("User", "User.id", "Comment.user_id")
@@ -101,10 +105,7 @@ class PostsModel {
             comments.forEach(comment=>{
                 comment.replies = repliesMap.get(`${comment.comment_id}`) || [];
             });
-
             post.comments = comments;
-
-
             return post;
         }catch(err){
             console.log(err);
