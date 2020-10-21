@@ -1,24 +1,28 @@
 <article class="post">
-    <div class="community">
-        <h3><%= post.community_name %></h3>
-    </div>
-    <div class="post-content">
-        <div class="author">
-            <img width="4%" src="<%= post.author_pfp %>" alt="">
-            <p> <%= post.author_username %> </p>
+    <% if(post){ %>
+        <div class="community">
+            <h3><%= post.community_name %></h3>
         </div>
-        <h1 class="post-title"><%= post.post_title %></h1>
-        <p class="post-body"><%= post.post_body%></p>
-        <div class="stats">
-            <div class="views">
-                <%= post.views %> <i class="typcn typcn-eye"></i>
+        <div class="post-content">
+            <div class="author">
+                <img width="4%" src="<%= post.author_pfp %>" alt="">
+                <p> <%= post.author_username %> </p>
             </div>
-            <div class="likes">
-                <%= post.likes %> <i class="typcn typcn-thumbs-up"></i>  
-            </div>
-            <div class="dislikes">
-                <%= post.dislikes %> <i class="typcn typcn-thumbs-down"></i>
+            <h1 class="post-title"><%= post.post_title %></h1>
+            <p class="post-body"><%= post.post_body%></p>
+            <div class="stats">
+                <div class="views">
+                    <%= post.views %> <i class="typcn typcn-eye"></i>
+                </div>
+                <div class="likes">
+                    <%= post.likes %> <i class="typcn typcn-thumbs-up"></i>  
+                </div>
+                <div class="dislikes">
+                    <%= post.dislikes %> <i class="typcn typcn-thumbs-down"></i>
+                </div>
             </div>
         </div>
-    </div>
+    <% } else { %>
+        <p style="padding: 1rem;">Post not found <a href="/">See all posts</a></p>
+    <% } %>
 </article>
