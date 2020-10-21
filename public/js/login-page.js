@@ -4,8 +4,8 @@ async function login(e){
     try{
         e.preventDefault();
         const submitButton = document.querySelector("button#submit");
-        const username = document.querySelector("input#username").value;
-        const password = document.querySelector("input#password").value;
+        const username = document.querySelector("input#username").value.trim();
+        const password = document.querySelector("input#password").value.trim();
         const requestBody = JSON.stringify({username, password});
 
         submitButton.disabled = true;
