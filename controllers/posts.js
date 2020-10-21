@@ -16,6 +16,7 @@ class PostsController {
         try {
             const {post_id} = req.params;
             const post = await PostsModel.getById(post_id);
+            if(!post) return res.render("post-page", {post: null, err: null});
             res.render("post-page", {post, err: null});
         }catch(err){
             console.log(err);
