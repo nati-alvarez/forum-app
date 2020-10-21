@@ -257,6 +257,11 @@ nav .logo i {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 600ms ease-in-out 150ms;
+  transform-origin: center center;
+}
+nav .logo i:hover {
+  transform: rotate(360deg);
 }
 @media (max-width: 800px) {
   nav .logo i {
