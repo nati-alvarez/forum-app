@@ -13,21 +13,21 @@ server.use(express.json());
 
 server.use(helmet({contentSecurityPolicy: false}));
 server.use(session({
-    name: "JASDOIS9SDFA9FA",
+    name: "cookie_name",
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
         path: "/",
         httpOnly: true,
-        secure: true,
+        secure: (process.env.NODE_ENV === "development")? false: true,
         sameSite: true,
-        magAge: 7 * 24 * 60 * 60 * 100
+        expires: 7 * 24 * 60 * 60 * 100
     }
 }));
 
 const routes = require("./routes");
-server.use("/", routes)
+server.use("/", routes);
 
 const PORT = process.env.PORT;
 server.listen(PORT, ()=> console.log(`Server listening on ${PORT}`));
