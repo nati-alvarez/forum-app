@@ -285,6 +285,15 @@ nav .auth-buttons button {
 nav .auth-buttons .login {
   margin-right: 10px;
 }
+nav .account {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+nav .account img {
+  margin-right: 10px;
+  border-radius: 50%;
+}
 .post-preview {
   border: 1px solid #333;
   transition: box-shadow 200ms ease-out;
