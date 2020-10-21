@@ -127,6 +127,9 @@ function createPostPreview (post){
     const postPreview = document.createElement("div");
     postPreview.classList.add(["post-preview"]);
     postPreview.dataset.post_id = post.post_id;
+    postPreview.onclick = function(){
+        window.location = `/posts/${post.post_id}`
+    }
 
     const community = document.createElement("div");
     community.classList.add("community");
