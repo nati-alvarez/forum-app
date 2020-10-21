@@ -243,6 +243,9 @@ nav .logo {
     flex: 0;
   }
 }
+nav .logo a {
+  color: #333;
+}
 nav .logo i {
   font-size: 1.6rem;
   position: absolute;
