@@ -59,6 +59,7 @@ class RequestStatus {
     renderLoading(){
         this.loading = true;
         this.error = null;
+        this.statusContainer.classList.remove("error");
         this.statusContainer.textContent = "";
         this.statusContainer.textContent = "loading..."
     }
@@ -72,6 +73,7 @@ class RequestStatus {
         this.loading = false;
         this.statusContainer.textContent = "";
         this.statusContainer.textContent = this.error;
+        this.statusContainer.classList.add("error");
     }
 
     /**
