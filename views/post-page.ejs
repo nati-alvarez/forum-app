@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css"/>
-    <link rel="stylesheet" href="/css/index.css">
+    <% let headTitle; %>
+    <% if(post) { %>
+        <% headTitle = post.post_title %>
+    <% } %>
+    <%- include("partials/head", {title: headTitle || "Post not found"}) %>
 </head>
 <body>
     <%- include("partials/nav") %>
