@@ -8,7 +8,7 @@
     <%- include("partials/head", {title: headTitle || "Post not found"}) %>
 </head>
 <body>
-    <%- include("partials/nav") %>
+    <%- include("partials/nav", {user}) %>
     <main class="post-page">
         <% if(!err){ %>
             <%- include ("partials/post-page/post", {post})%>

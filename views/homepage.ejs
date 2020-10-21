@@ -2,7 +2,7 @@
 <html lang="en">
 <%- include("partials/head", {title: "Home"}) %>
 <body>
-    <%- include("partials/nav") %>
+    <%- include("partials/nav", {user}) %>
     <main class="homepage">
         <%- include("partials/site-news") %>
         <%- include("partials/filter-posts") %>

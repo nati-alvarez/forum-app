@@ -1,4 +1,5 @@
 <nav>
+    <% console.log(user)%>
     <div class="search-site">
         <input type="text" placeholder="People, posts, communities"/>
     </div>
@@ -7,8 +8,15 @@
             <i class="typcn typcn-device-desktop"></i>
         </a>
     </div>
-    <div class="auth-buttons">
-        <button class="primary signup">Sign up</button>
-        <button class="secondary login">Login</button>
-    </div>
+    <% if(!user){%>
+        <div class="auth-buttons">
+            <button onclick="window.location = '/signup'" class="primary signup">Sign up</button>
+            <button onclick="window.location = '/login'" class="secondary login">Login</button>
+        </div>
+    <% }else { %>
+        <div onclick="window.location = '/my-profile'" class="account">
+            <img width="35" src="<%= user.pfp%>"/>
+            <p><%= user.username %></p>
+        </div>
+    <% } %>
 </nav>
