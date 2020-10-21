@@ -3,7 +3,7 @@ const express = require("express");
 const server = express();
 const path = require("path");
 const helmet = require("helmet");
-const session = require("session");
+const session = require("express-session");
 
 server.use(express.static(path.join(__dirname, "public")));
 server.set("view engine", "ejs");
@@ -11,7 +11,7 @@ server.set("view engine", "ejs");
 server.use(express.urlencoded({extended: true}));
 server.use(express.json());
 
-server.use(helmet());
+server.use(helmet({contentSecurityPolicy: false}));
 server.use(session({
     name: "JASDOIS9SDFA9FA",
     secret: process.env.SESSION_SECRET,
