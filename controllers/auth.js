@@ -2,6 +2,11 @@ const UserModel = require("../models/users/index");
 const bcrypt = require("bcrypt");
 
 class AuthController {
+    static renderLoginPage(req, res) {
+        if(req.session.user) return res.redirect("/");
+        res.render("login");
+    };
+
     static async login(req, res){
         const {username, password} = req.body;
         if(!username || !password) return res.status(400).json({err: "Username and password required"});
