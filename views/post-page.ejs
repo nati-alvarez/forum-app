@@ -10,13 +10,22 @@
 <body>
     <%- include("partials/nav") %>
     <main class="post-page">
-        <%- include ("partials/post-page/post", {post})%>
-        <div class="comments">
-            <h3>Comments</h3>
-            <% post.comments.forEach(comment=>{ %>
-                <%- include("partials/post-page/comment", {comment})%>
-            <% })%>
-        </div>
+        <% if(!err){ %>
+            <%- include ("partials/post-page/post", {post})%>
+            <% if(post) {%>
+                <div class="comments">
+                    <h3>Comments</h3>
+                    <% if(post.comments[0]){ %>
+                        <% console.log(post.comments[0]) %>
+                        <% post.comments.forEach(comment=>{ %>
+                            <%- include("partials/post-page/comment", {comment})%>
+                        <% })%>
+                    <% } else { %>
+                        <p>No comments</p>
+                    <% } %>
+                </div>
+            <% } %>
+        <% } %>
     </main>
 </body>
 <%- include("partials/shared-scripts") %>

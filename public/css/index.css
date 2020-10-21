@@ -169,6 +169,9 @@ button {
   padding: 1vh 2vh;
   border-radius: 3px;
 }
+a {
+  color: #29be0f;
+}
 button.primary {
   background: #e34275;
   color: #fffded;
