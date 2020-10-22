@@ -8,6 +8,11 @@ class UsersModel {
         .where({username}).first()
         .select("id", "username", "pfp", "password");
     }
+
+    static createUser(username, password, pfp, bio, isPublic){
+        return this.queryBuilder("User")
+        .insert({username, password, pfp, bio, public: isPublic})
+    }
 }
 
 module.exports = UsersModel;
