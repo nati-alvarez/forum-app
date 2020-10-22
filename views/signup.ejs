@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("partials/head", {title: "Signup"}) %>
+<body>
+    <%- include("partials/nav",{user: null}) %>
+    <main class="signup-page">
+        <form onsubmit="signup(event)">
+            <h1>Login</h1>
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username"/>
+            </div>
+            <div class="form-field">
+                <label for="bio">Bio</label>
+                <textarea name="bio" id="bio"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="pfp">Profile Picture</label>
+                <input type="file" name="pfp" id="pfp"/>
+            </div>
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="form-field">
+                <label for="public">Public?</label>
+                <input type="checkbox" name="public" id="public">
+            </div>
+            <button id="submit" class="secondary">
+                Sign up
+            </button>
+            <p>
+                <a href="/login">Already have an account? Log in</a>
+            </p>
+            <p class="status"></p>
+        </form>
+    </main>
+</body>
+<%- include("partials/shared-scripts.ejs") %>
+<script src="/js/signup-page.js"></script>
+</html>
