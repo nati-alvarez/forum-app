@@ -1,4 +1,4 @@
-.login-page {
+.login-page, .signup-page {
     width: 80%;
     max-width: 600px;
     margin: 0 auto;
@@ -20,7 +20,7 @@
             font-weight: bold;
         }
         
-        input {
+        input, textarea {
             width: 100%;
             border: none;
             padding: .4rem;
@@ -37,5 +37,11 @@
 
     .status {
         margin-top: 2vh;
+    }
+}
+
+.signup-page {
+    input[type=checkbox] {
+        width: auto;
     }
 }
