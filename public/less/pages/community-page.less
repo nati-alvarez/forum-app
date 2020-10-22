@@ -1,0 +1,91 @@
+.community-page {
+
+    header {
+        width: 100%;
+        height: 50vh;
+        background: @primaryFontColor;
+        color: @secondaryBackgroundColor;
+        position: relative;
+
+        .community-info {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .description {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4rem 1rem 2rem 1rem;
+            background: linear-gradient(transparent, rgba(0, 0,0, .8), black);
+            width: 100%;
+            line-height: 1.6rem;
+            text-align: center;
+        }
+
+        .owner {
+            display: flex;
+            align-items: center;
+
+            img {
+                background-color: @secondaryBackgroundColor;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .content {
+        padding: 4rem;
+        display: flex;
+
+        .posts {
+            flex: 3;
+            max-width: 800px;
+        }
+
+        .post {
+            background: @secondaryBackgroundColor;
+            margin: 2rem 0;
+            padding: 1rem;
+            position: relative;
+            border: 1px solid @primaryFontColor;
+
+            .title {
+                margin-bottom: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .author {
+                display: flex;
+                align-items: center;
+                
+                img {
+                    margin-right: 10px;
+                }
+            }
+
+            .stats {
+                display: flex;
+                margin-top: 2vh;
+
+                & > div {
+                    margin-right: 20px;
+                }
+
+                i {
+                    font-size: 1.6rem;
+                }
+            }
+
+            button {
+                display: block;
+                margin-right: 0;
+                margin-left: auto;
+            }
+        }
+    }
+}
