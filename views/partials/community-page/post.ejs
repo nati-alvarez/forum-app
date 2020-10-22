@@ -1,0 +1,25 @@
+<article class="post">
+    <div class="title">
+        <h3><%= post.post_title %></h3>
+        <div class="author">
+            <img width="25" height="25" src="<%= post.author_pfp %>" alt="" class="rounded">
+            <p><%= post.author_username %></p>
+        </div>
+    </div>
+    <p><%= post.post_body %></p>
+    <div class="stats">
+        <div class="comments">
+            <%= post.comments %> <i class="typcn typcn-messages"></i>
+        </div>
+        <div class="views">
+            <%= post.views %> <i class="typcn typcn-eye"></i>
+        </div>
+        <div class="likes">
+            <%= post.likes %> <i class="typcn typcn-thumbs-up"></i>
+        </div>
+        <div class="dislikes">
+            <%= post.dislikes %> <i class="typcn typcn-thumbs-down"></i>
+        </div>
+    </div>
+    <button class="secondary">Read Post</button>
+</article>

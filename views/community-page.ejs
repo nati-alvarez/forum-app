@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/head", {title: "Community"}) %>
+<body>
+    <% console.log(community) %>
+    <%- include("partials/nav", {user}) %>
+    <main class="community-page">
+        <%- include("partials/community-page/header", {community}) %>
+        <div class="content">
+            <section class="posts">
+                <h2>Posts</h2>
+                <%- include("partials/filter-posts") %>
+                <% community.posts.forEach(post=>{ %>
+                    <%- include("partials/community-page/post", {post}) %>
+                <% }) %>
+            </section>
+            <aside>
+                Sidebar stuff
+            </aside>
+        </div>
+    </main>
+</body>
+<%- include("partials/shared-scripts") %>
+</html>
