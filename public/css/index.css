@@ -590,7 +590,8 @@ nav .account img {
 .post-page .comments .reply .content {
   position: relative;
 }
-.login-page {
+.login-page,
+.signup-page {
   width: 80%;
   max-width: 600px;
   margin: 0 auto;
@@ -598,12 +599,14 @@ nav .account img {
   margin-top: 10vh;
   padding: 2rem;
 }
-.login-page .form-field {
+.login-page .form-field,
+.signup-page .form-field {
   margin: 5vh 0;
   display: flex;
   flex-wrap: wrap;
 }
-.login-page .form-field label {
+.login-page .form-field label,
+.signup-page .form-field label {
   font-size: 0.8rem;
   width: 100%;
   margin-bottom: 1vh;
@@ -611,17 +614,26 @@ nav .account img {
   color: #e34275;
   font-weight: bold;
 }
-.login-page .form-field input {
+.login-page .form-field input,
+.signup-page .form-field input,
+.login-page .form-field textarea,
+.signup-page .form-field textarea {
   width: 100%;
   border: none;
   padding: 0.4rem;
 }
-.login-page button {
+.login-page button,
+.signup-page button {
   margin-bottom: 2vh;
 }
-.login-page a {
+.login-page a,
+.signup-page a {
   color: #4290e3;
 }
-.login-page .status {
+.login-page .status,
+.signup-page .status {
   margin-top: 2vh;
+}
+.signup-page input[type=checkbox] {
+  width: auto;
 }
