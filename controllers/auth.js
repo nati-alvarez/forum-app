@@ -47,8 +47,7 @@ class AuthController {
                 cloudinary.uploader.upload(tmpPfp, async (err, result)=>{
                     fs.unlinkSync(tmpPfp);
                     if(result){
-                        const user = await UserModel.createUser(username, hash, result.secure_url,  bio, isPublic)
-                        .returning("id", "username", "pfp");
+                        const user = await UserModel.createUser(username, hash, result.secure_url,  bio, isPublic);
                         req.session.user = {
                             id: user.id,
                             username: user.username,
