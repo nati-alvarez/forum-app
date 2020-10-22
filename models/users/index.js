@@ -9,9 +9,18 @@ class UsersModel {
         .select("id", "username", "pfp", "password");
     }
 
-    static createUser(username, password, pfp, bio, isPublic){
+    static async createUser(username, password, pfp, bio, isPublic){
+        const values = {username, password, bio, public: isPublic}
+        if(pfp) values.pfp = pfp;
+        console.log(values, pfp);
+
+        const userId = await this.queryBuilder("User")
+        .returning("id")
+        .insert(values)
+
         return this.queryBuilder("User")
-        .insert({username, password, pfp, bio, public: isPublic})
+        .where({id: userId[0]}).first()
+        .select("id", "username", "pfp");
     }
 }
 
