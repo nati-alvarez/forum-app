@@ -3,7 +3,7 @@ const db = require("../db");
 class PostsModel {
     static queryBuilder = db;
     
-    static getAll(category, keyword, startFrom){
+    static getAll(category, keyword, startFrom, communityMame){
         const categories = new Map();
         categories.set("Best", "likes");
         categories.set("Popular", "views");
@@ -28,6 +28,9 @@ class PostsModel {
         .limit(20);
         if(keyword){
             query.where(db.raw('LOWER("Post".title) LIKE LOWER(?)', ['%' + keyword + '%']));
+        }
+        if(communityMame){
+            query.where("Community.name", communityMame);
         }
         if(category){
             query.orderBy(categories.get(category), "desc");
