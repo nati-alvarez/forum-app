@@ -14,12 +14,16 @@ class PostsModel {
         .join("User", "Post.author_id", "User.id")
         .leftJoin("View", "Post.id", "View.post_id")
         .leftJoin("Comment", "Post.id", "Comment.post_id")
-        .leftJoin("Post_Vote", function(){
-            this.on("Post_Vote.post_id", "Post.id");
-            this.andOn("Post_Vote.status", ">", 0)
+        .leftJoin("Post_Vote as Like", function(){
+            this.on("Like.post_id", "Post.id");
+            this.andOn("Like.status", ">", 0);
+        })
+        .leftJoin("Post_Vote as Dislike", function(){
+            this.on("Dislike.post_id", "Post.id");
+            this.andOn("Dislike.status", "<", 0);
         })
         .groupBy("Community.id", "Post.id", "User.id")
-        .countDistinct({views: "View.post_id", comments: "Comment.id", likes: "Post_Vote.id"})
+        .countDistinct({views: "View.post_id", comments: "Comment.id", likes: "Like.id", dislikes: "Dislike.id"})
         .select("Community.id as community_id", "Community.name as community_name",
         "Community.icon as community_icon", "Post.id as post_id", 
         "Post.title as post_title", "Post.body as post_body",
