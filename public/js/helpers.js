@@ -5,9 +5,9 @@
  * @returns {Promise} promise of filtered posts
  * @returns {Error} error object
  */
-async function getPosts(category, keyword, startFrom){
+async function getPosts(category, keyword, startFrom, communityName) {
     try{
-        const res = await fetch(`/posts?category=${category}&keyword=${keyword}&startFrom=${startFrom}`)
+        const res = await fetch(`/posts?category=${category}&keyword=${keyword}&startFrom=${startFrom}&communityName=${communityName}`);
         return res.json();
     }catch(err){
         console.log(err);
