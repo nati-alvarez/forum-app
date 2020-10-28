@@ -67,7 +67,38 @@ function createPostElement(post){
 
     const postBody = document.createElement("p");
     postBody.classList.add("post-body")
+    postBody.textContent = post.post_body;
 
-    postElement.append(title);
+    const stats = document.createElement("div");
+    stats.classList.add("stats");
+
+    const comments = document.createElement("div");
+    comments.classList.add("comments");
+    comments.innerHTML = `${post.comments} <i class="typcn typcn-messages"></i>`;
+
+    const views = document.createElement("div");
+    views.classList.add("views");
+    views.innerHTML = `${post.views} <i class="typcn typcn-eye"></i>`;
+
+    const likes = document.createElement("div");
+    likes.classList.add("likes");
+    likes.innerHTML = `${post.likes} <i class="typcn typcn-thumbs-up"></i>`;
+
+    const dislikes = document.createElement("div");
+    dislikes.classList.add("dislikes");
+    dislikes.innerHTML = `${post.dislikes} <i class="typcn typcn-thumbs-down"></i>`;
+
+    stats.append(comments, views, likes, dislikes);
+
+    const postLink = document.createElement("a");
+    postLink.href = `/posts/${post.post_id}`;
+
+    const readPostBtn = document.createElement("button");
+    readPostBtn.classList.add("secondary");
+    readPostBtn.textContent = "Read Post";
+
+    postLink.appendChild(readPostBtn);
+
+    postElement.append(title, postBody, stats, postLink);
     return postElement;
 }
