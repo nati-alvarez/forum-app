@@ -10,9 +10,12 @@
             <section class="posts">
                 <h2>Posts</h2>
                 <%- include("partials/filter-posts") %>
-                <% community.posts.forEach(post=>{ %>
-                    <%- include("partials/community-page/post", {post}) %>
-                <% }) %>
+                <div class="posts-container">
+                    <div class="status"></div>
+                    <% community.posts.forEach(post=>{ %>
+                        <%- include("partials/community-page/post", {post}) %>
+                    <% }) %>
+                </div>
             </section>
             <aside>
                 Sidebar stuff
@@ -21,4 +24,5 @@
     </main>
 </body>
 <%- include("partials/shared-scripts") %>
+<script src="/js/community-page.js"></script>
 </html>
