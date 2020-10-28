@@ -40,7 +40,6 @@ class PostsModel {
             query.orderBy(categories.get(category), "desc");
         } 
         if(startFrom){
-            console.log(startFrom)
             query.offset(startFrom * 20);
         }
         return query;
