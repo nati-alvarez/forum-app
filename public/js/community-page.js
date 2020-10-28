@@ -26,7 +26,7 @@ async function setCategory(e, value){
     setActiveTab(e)
     filters.category = value;
 
-    pageCounter = 0;
+    pageCounter = 1;
 
     try{
         requestStatus.renderLoading();
@@ -46,6 +46,7 @@ function renderPosts(posts){
         const postElement = createPostElement(post);
         postsContainer.append(postElement);
     });
+    lastPostInView("article.post", filters);
 }
 
 /**
