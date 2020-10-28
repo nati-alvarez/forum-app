@@ -12,7 +12,6 @@ class UsersModel {
     static async createUser(username, password, pfp, bio, isPublic){
         const values = {username, password, bio, public: isPublic}
         if(pfp) values.pfp = pfp;
-        console.log(values, pfp);
 
         const userId = await this.queryBuilder("User")
         .returning("id")

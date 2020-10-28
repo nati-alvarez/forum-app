@@ -1,3 +1,10 @@
+/***** TODO *****
+ * Much of this code is not very DRY, most of the functions are copies of the functions
+ * from homepage.js with minor changes.
+ * 
+ * I plan to put them into helpers.js and make them work for both
+*/
+
 const requestStatus = new RequestStatus(".status");
 const filters = {
     category: "Popular",
@@ -39,6 +46,71 @@ function renderPosts(posts){
         const postElement = createPostElement(post);
         postsContainer.append(postElement);
     });
+}
+
+/**
+ * Renders additional posts gotten from db when user finishes scrolling to bottom 
+ * @param {Array} posts newly loaded posts 
+ */
+function renderMorePosts(posts){
+    const postsContainer = document.querySelector(".posts-container");
+    posts.forEach(post=>{
+        const postElement = createPostElement(post);
+        postsContainer.appendChild(postElement);
+    });
+    postPreviewAnimations();
+    lastPostInView("article.post", filters);
+}
+
+/**
+ * Queries db for posts that match  the .filter-posts input's keyword
+ * @param {Event} e the event object 
+ */
+async function searchPosts(e){
+    //triggers on enter key press in input or if search button is clicked
+    if(e.keyCode === 13 || e.currentTarget.nodeName === "BUTTON"){
+        const keywordInput = document.querySelector(".filter-posts .search input");
+        filters.keyword = keywordInput.value;
+        pageCounter = 0;
+        try {
+            requestStatus.renderLoading();
+            const res = await getPosts(filters.category, filters.keyword);
+            requestStatus.success();
+            renderPosts(res.posts);
+        }catch(err){
+            requestStatus.renderError(err.message)
+        }
+    }
+}
+
+/**
+ * Sets event listener on window scroll to see if posts have been scrolled to the bottom,
+ * If posts are scrolled to bottom it gets 20 more posts from db
+ * @param {String} className the class name given to post elements
+ * @param {Object} filters the filters that the user is browsing
+ */
+function lastPostInView(className, filters){
+    const posts = document.querySelectorAll(className);
+    const post = posts[posts.length - 1];
+    const postCoords = getElementCoords(post);
+    
+    async function isInView(){
+        if(window.scrollY >= (postCoords.top - post.clientHeight) - 300){
+            window.removeEventListener("scroll", window.inViewEventHandler);
+            const res =  await getPosts(filters.category, filters.keyword, pageCounter, communityName);
+            if (res.posts.length > 0) renderMorePosts(res.posts);
+            pageCounter += 1;
+        }
+    }
+
+    if(!window.inViewEventHandler)
+        window.inViewEventHandler = isInView;
+    else {
+        window.removeEventListener("scroll", window.inViewEventHandler);   
+        window.inViewEventHandler = isInView;
+    }
+
+    window.addEventListener("scroll", window.inViewEventHandler);
 }
 
 function createPostElement(post){
@@ -102,3 +174,5 @@ function createPostElement(post){
     postElement.append(title, postBody, stats, postLink);
     return postElement;
 }
+
+lastPostInView("article.post", filters);

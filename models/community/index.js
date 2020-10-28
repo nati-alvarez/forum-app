@@ -28,6 +28,7 @@ class CommunityModel {
         .groupBy("Post.id", "User.id")
         .select("Post.id as post_id", "Post.title as post_title", "Post.body as post_body",
         "User.id as author_id", "User.username as author_username", "User.pfp as author_pfp")
+        .limit("20")
         .countDistinct({views: "View.user_id", comments: "Comment.id", likes: "Like.user_id", dislikes: "Dislike.user_id"});
 
         community.posts = posts;
