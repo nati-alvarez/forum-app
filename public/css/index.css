@@ -699,7 +699,8 @@ nav .account img {
   background-color: #f5f5f5;
   margin-right: 10px;
 }
-.community-page .join-community {
+.community-page .join-community,
+.community-page .leave-community {
   margin-left: 4rem;
   margin-top: 2rem;
   font-weight: bold;
