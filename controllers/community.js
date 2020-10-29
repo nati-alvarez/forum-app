@@ -4,7 +4,7 @@ class CommunityController {
     static async renderCommunityPage(req, res){
         try {
             const community = await communityModel.getCommunity(req.params.community_name);
-            res.render("community-page", {user: req.session.user, community});
+            res.render("community-page", {user: req.user, community});
         }catch(err){
             console.log(err)
         }
