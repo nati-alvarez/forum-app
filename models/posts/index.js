@@ -29,7 +29,7 @@ class PostsModel {
         "Post.title as post_title", "Post.body as post_body",
         "User.username as author_username", "User.pfp as author_pfp",
         "User.id as author_id")
-        .limit(20);
+        .limit("20");
         if(keyword){
             query.where(db.raw('LOWER("Post".title) LIKE LOWER(?)', ['%' + keyword + '%']));
         }

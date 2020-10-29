@@ -25,12 +25,13 @@ async function setCategory(e, value){
 
     setActiveTab(e)
     filters.category = value;
-
-    pageCounter = 1;
-
+    pageCounter = 0;
+    
     try{
         requestStatus.renderLoading();
         const res =  await getPosts(filters.category, filters.keyword, pageCounter, communityName);
+        pageCounter += 1;
+        console.log(res);
         requestStatus.success();
         renderPosts(res.posts);
     }catch(err){
@@ -73,11 +74,13 @@ async function searchPosts(e){
         const keywordInput = document.querySelector(".filter-posts .search input");
         filters.keyword = keywordInput.value;
         pageCounter = 0;
+
         try {
             requestStatus.renderLoading();
-            const res = await getPosts(filters.category, filters.keyword);
+            const res =  await getPosts(filters.category, filters.keyword, pageCounter, communityName);
             requestStatus.success();
             renderPosts(res.posts);
+            pageCounter += 1;
         }catch(err){
             requestStatus.renderError(err.message)
         }
