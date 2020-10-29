@@ -531,6 +531,22 @@ nav .account img {
 .post-page .post .stats i {
   font-size: 1.4rem;
 }
+.post-page section.comment-form {
+  background: #f5f5f5;
+  padding: 1rem;
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 10vh;
+}
+.post-page section.comment-form textarea {
+  width: 100%;
+  margin-top: 4vh;
+  min-height: 150px;
+}
+.post-page section.comment-form button {
+  margin-top: 4vh;
+}
 .post-page .comments {
   width: 80%;
   max-width: 1000px;
@@ -682,6 +698,12 @@ nav .account img {
 .community-page header .owner img {
   background-color: #f5f5f5;
   margin-right: 10px;
+}
+.community-page .join-community {
+  margin-left: 4rem;
+  margin-top: 2rem;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
 }
 .community-page .content {
   padding: 4rem;

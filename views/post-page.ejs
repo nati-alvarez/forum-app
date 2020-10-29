@@ -12,6 +12,7 @@
     <main class="post-page">
         <% if(!err){ %>
             <%- include ("partials/post-page/post", {post})%>
+            <%- include("partials/post-page/comment-form")%>    
             <% if(post) {%>
                 <div class="comments">
                     <h3>Comments</h3>

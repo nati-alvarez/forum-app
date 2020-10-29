@@ -5,6 +5,9 @@
     <%- include("partials/nav", {user}) %>
     <main class="community-page">
         <%- include("partials/community-page/header", {community}) %>
+        <% if(user) { %>
+            <button class="primary join-community">Join Community</button>
+        <% } %>
         <div class="content">
             <section class="posts">
                 <h2>Posts</h2>

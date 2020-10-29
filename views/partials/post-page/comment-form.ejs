@@ -1,5 +1,11 @@
-<form>
+<section class="comment-form">
     <% if(!user) { %>
         <p>You are not logged in. You must be logged in to comment</p>
-    <%}%>
-</form>
+    <% } else { %>
+    <form>
+        <h3>Leave a comment</h3>
+        <textarea></textarea>
+        <button class="primary">Send Comment</button>
+    </form>
+    <% } %>
+</section>
