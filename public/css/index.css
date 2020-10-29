@@ -494,6 +494,17 @@ nav .account img {
   color: #fffded;
   padding: 0.4rem 0;
   letter-spacing: 2px;
+  transition: background 200ms ease-in-out;
+}
+.post-page .post .community:hover {
+  background: #5df043;
+}
+.post-page .post .community:hover a.community-link {
+  color: #444;
+}
+.post-page .post .community a.community-link {
+  color: inherit;
+  transition: 200ms color ease-in-out;
 }
 .post-page .post .community h3 {
   font-size: 1.4rem;
