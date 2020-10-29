@@ -35,6 +35,13 @@ class CommunityModel {
         return community;
 
     }
+
+    static async isMember(userId, communityName){
+        const community = await this.queryBuilder("Community").where({name: communityName}).select("id").first();
+        const member = await this.queryBuilder("Community_Member").where({user_id: userId, community_id: community.id}).first();
+        if(member) return true;
+        return false;
+    }
 }
 
 module.exports = CommunityModel;
