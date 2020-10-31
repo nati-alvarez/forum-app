@@ -31,8 +31,9 @@ async function setCategory(e, value){
 
     try{
         requestStatus.renderLoading();
-        const res =  await getPosts(filters.category, filters.keyword);
+        const res =  await getPosts(filters.category, filters.keyword, pageCounter);
         requestStatus.success();
+        console.log(res);
         renderPosts(res.posts);
     }catch(err){
         console.log(typeof err);
@@ -52,7 +53,7 @@ async function searchPosts(e){
         pageCounter = 0;
         try {
             requestStatus.renderLoading();
-            const res = await getPosts(filters.category, filters.keyword);
+            const res = await getPosts(filters.category, filters.keyword, pageCounter);
             requestStatus.success();
             renderPosts(res.posts);
         }catch(err){
