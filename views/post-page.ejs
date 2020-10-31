@@ -12,7 +12,7 @@
     <main class="post-page">
         <% if(!err){ %>
             <%- include ("partials/post-page/post", {post})%>
-            <%- include("partials/post-page/comment-form")%>    
+            <%- include("partials/post-page/comment-form", {isMember: post.is_member})%>    
             <% if(post) {%>
                 <div class="comments">
                     <h3>Comments</h3>

@@ -5,7 +5,7 @@ const filters = {
     category: "Popular",
     keyword: "",
 }
-let pageCounter = 0;
+let pageCounter = 1;
 
 const requestStatus = new RequestStatus(".posts");
 
@@ -33,8 +33,8 @@ async function setCategory(e, value){
         requestStatus.renderLoading();
         const res =  await getPosts(filters.category, filters.keyword, pageCounter);
         requestStatus.success();
-        console.log(res);
         renderPosts(res.posts);
+        pageCounter += 1;
     }catch(err){
         console.log(typeof err);
         requestStatus.renderError(err.message);
@@ -51,11 +51,13 @@ async function searchPosts(e){
         const keywordInput = document.querySelector(".filter-posts .search input");
         filters.keyword = keywordInput.value;
         pageCounter = 0;
+
         try {
             requestStatus.renderLoading();
             const res = await getPosts(filters.category, filters.keyword, pageCounter);
             requestStatus.success();
             renderPosts(res.posts);
+            pageCounter += 1;
         }catch(err){
             requestStatus.renderError(err.message)
         }
@@ -74,9 +76,11 @@ function lastPostInView(className, filters){
     const postCoords = getElementCoords(post);
     
     async function isInView(){
-        if(window.scrollY >= (postCoords.top - post.clientHeight) - 200){
+        if(window.scrollY >= (postCoords.top - post.clientHeight) - 220){
             window.removeEventListener("scroll", window.inViewEventHandler);
-            const res = await getPosts(filters.category, filters.keyword, ++pageCounter);
+            const res = await getPosts(filters.category, filters.keyword, pageCounter);
+            pageCounter += 1;
+
             if (res.posts.length > 0) renderMorePosts(res.posts);
         }
     }
