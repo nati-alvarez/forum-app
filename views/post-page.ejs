@@ -35,7 +35,7 @@
     This will check if the user has viewed the post yet
     If they havent, make an api call to add view to db
 -->
-<% if(post && !post.has_viewed){ %>
+<% if(user && post && !post.has_viewed){ %>
     <script defer>
         // only way to pass ejs vars to client js
         let post_id = Number("<%= post.post_id%>");
