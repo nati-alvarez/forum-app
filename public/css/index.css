@@ -551,6 +551,7 @@ nav .account img {
 }
 .post-page section.comment-form button {
   margin-top: 4vh;
+  margin-bottom: 2vh;
 }
 .post-page .comments {
   width: 80%;

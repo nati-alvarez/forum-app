@@ -76,7 +76,7 @@ function lastPostInView(className, filters){
     const postCoords = getElementCoords(post);
     
     async function isInView(){
-        if(window.scrollY >= (postCoords.top - post.clientHeight) - 220){
+        if(window.scrollY >= (postCoords.top - post.clientHeight) - 520){
             window.removeEventListener("scroll", window.inViewEventHandler);
             const res = await getPosts(filters.category, filters.keyword, pageCounter);
             pageCounter += 1;

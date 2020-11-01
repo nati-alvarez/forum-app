@@ -99,7 +99,7 @@ function lastPostInView(className, filters){
     const postCoords = getElementCoords(post);
     
     async function isInView(){
-        if(window.scrollY >= (postCoords.top - post.clientHeight) - 300){
+        if(window.scrollY >= (postCoords.top - post.clientHeight) - 500){
             window.removeEventListener("scroll", window.inViewEventHandler);
             const res =  await getPosts(filters.category, filters.keyword, pageCounter, communityName);
             if (res.posts.length > 0) renderMorePosts(res.posts);
