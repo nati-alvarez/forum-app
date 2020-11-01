@@ -22,6 +22,22 @@ function submitComment(comment){
 }
 
 //creates view entry in db if user has not viewed this post before
-function sendView(post_id){
-    console.log(post_id);
+async function sendView(post_id){
+    const res = await fetch("/post-views", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({post_id})
+    });
+    data = await res.json();
+    
+    if(res.status === 201){
+        console.log("view added");
+        const viewCount = document.querySelector(".views");
+        viewCount.innerHTML = (Number(viewCount.textContent) + 1) + " <i class='typcn typcn-eye'></i>";
+    }else {
+        console.log(data);
+    }
 }
