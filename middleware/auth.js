@@ -16,6 +16,11 @@ class AuthMiddleware  {
         };
         next();
     }
+    
+    static protected(req, res, next){
+        if(!res.user) return res.status(403).json({message: "Access denied"});
+        next();
+    }
 }
 
 module.exports = AuthMiddleware;
