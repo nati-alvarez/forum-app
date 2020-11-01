@@ -20,3 +20,8 @@ commentForm.addEventListener("submit", e=>{
 function submitComment(comment){
     return comment;
 }
+
+//creates view entry in db if user has not viewed this post before
+function sendView(post_id){
+    console.log(post_id);
+}
