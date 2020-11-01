@@ -117,6 +117,12 @@ class PostsModel {
             console.log(err);
         }
     }
+
+    static async hasViewed(user_id, post_id){
+        return this.queryBuilder("View")
+        .where({user_id: user_id, post_id: post_id})
+        .first();
+    }
 }
 
 module.exports = PostsModel;
