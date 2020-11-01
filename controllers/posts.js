@@ -21,6 +21,8 @@ class PostsController {
             if(req.user){
                 const isMember = await CommunityModel.isMember(req.user.id, post.community_name);
                 post.is_member = isMember;
+                const hasViewed = await PostsModel.hasViewed(req.user.id, post_id);
+                post.has_viewed = Boolean(hasViewed);
             }
             res.render("post-page", {post, err: null, user: req.user});
         }catch(err){
