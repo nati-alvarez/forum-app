@@ -8,9 +8,11 @@ router.get("/", authMiddleware.isAuthenticated, homepageController.renderHomepag
 const authRoutes = require("./auth");
 const postRoutes = require("./posts");
 const communityRouter = require("./community");
+const postViewRoutes = require("./post-views");
 
 router.use("/", authRoutes);
 router.use("/posts", authMiddleware.isAuthenticated, postRoutes);
 router.use("/community", authMiddleware.isAuthenticated, communityRouter);
+router.use("/post-views", [authMiddleware.isAuthenticated, authMiddleware.protected], postViewRoutes);
 
 module.exports = router;
