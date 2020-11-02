@@ -13,6 +13,10 @@ class CommunityController {
             console.log(err)
         }
     }
+
+    static async renderCreateCommunityPage(req, res){
+        res.render("create-community", {user: req.user})
+    }
 }
 
 module.exports = CommunityController;
