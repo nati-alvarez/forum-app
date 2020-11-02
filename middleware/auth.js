@@ -17,8 +17,13 @@ class AuthMiddleware  {
         next();
     }
 
-    static protected(req, res, next){
+    static apiProtected(req, res, next){
         if(!req.user) return res.status(403).json({message: "Access denied"});
+        next();
+    }
+
+    static protected(req, res, next){
+        if(!req.user) return res.redirect("/");
         next();
     }
 }
