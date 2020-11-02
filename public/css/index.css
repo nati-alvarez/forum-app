@@ -197,6 +197,7 @@ nav {
   box-shadow: 2px 2px 0px 2px #29be0f;
   margin-bottom: 2px;
   flex-wrap: wrap;
+  color: #111111;
 }
 nav .search-site {
   flex: 2;
@@ -287,6 +288,19 @@ nav .auth-buttons button {
 }
 nav .auth-buttons .login {
   margin-right: 10px;
+}
+nav .links {
+  display: flex;
+  align-items: center;
+}
+nav .links a {
+  color: #111111;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 0.4rem;
+}
+nav .links a:hover {
+  background: #f5f5f5;
 }
 nav .account {
   display: flex;

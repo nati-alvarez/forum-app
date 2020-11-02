@@ -9,6 +9,7 @@ nav {
     box-shadow: 2px 2px 0px 2px darken(@primaryColor, 20%);
     margin-bottom: 2px;//compenstates for box-shadow so that it doesn't overlap content
     flex-wrap: wrap;
+    color: darken(@primaryFontColor, 20%);
 
     .search-site {
         flex: 2;
@@ -99,6 +100,23 @@ nav {
         }
         .login {
             margin-right: 10px;
+        }
+    }
+
+
+    .links {
+        display: flex;
+        align-items: center;
+
+        a {
+            color: darken(@primaryFontColor, 20%);
+            text-decoration: none;
+            margin-right: 20px;
+            padding: .4rem;
+
+            &:hover {
+                background: @secondaryBackgroundColor;
+            }
         }
     }
 
