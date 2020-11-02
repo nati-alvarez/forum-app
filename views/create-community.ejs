@@ -4,7 +4,27 @@
 <body>
     <%- include("partials/nav", {user}) %>
     <main class="create-community-page">
-        
+        <h1>Create a Community</h1>
+        <p>Have an awesome idea for a new community? Fill out this form to create it!</p>
+        <form>
+            <div class="form-field">
+                <label for="name">Community Name</label>
+                <input id="name" type="text" name="name"/>
+            </div>
+            <div class="form-field">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="banner">Banner</label>
+                <input type="file" name="banner" id="banner"/>
+            </div>
+            <div class="form-field">
+                <label for="icon">Icon</label>
+                <input type="file" name="icon" id="icon"/>
+            </div>
+            <button class="secondary">Create Community</button>
+        </form>
     </main>
 </body>
 <%- include("partials/shared-scripts") %>

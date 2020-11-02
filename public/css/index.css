@@ -133,7 +133,7 @@ html {
   font-size: 16px;
 }
 body {
-  color: #444;
+  color: #333;
   background: #fffded;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -197,7 +197,7 @@ nav {
   box-shadow: 2px 2px 0px 2px #29be0f;
   margin-bottom: 2px;
   flex-wrap: wrap;
-  color: #111111;
+  color: #000000;
 }
 nav .search-site {
   flex: 2;
@@ -251,7 +251,7 @@ nav .logo {
   }
 }
 nav .logo a {
-  color: #444;
+  color: #333;
 }
 nav .logo i {
   font-size: 1.6rem;
@@ -294,7 +294,7 @@ nav .links {
   align-items: center;
 }
 nav .links a {
-  color: #111111;
+  color: #000000;
   text-decoration: none;
   margin-right: 20px;
   padding: 0.4rem;
@@ -318,7 +318,7 @@ nav .account img {
   flex-wrap: wrap;
   align-items: stretch;
   padding-right: 1rem;
-  background: #444;
+  background: #333;
 }
 @media (max-width: 580px) {
   .filter-posts {
@@ -391,7 +391,7 @@ nav .account img {
   font-size: 1.8rem;
 }
 .post-preview {
-  border: 1px solid #444;
+  border: 1px solid #333;
   transition: box-shadow 200ms ease-out;
   padding-bottom: 2rem;
   position: relative;
@@ -427,7 +427,7 @@ nav .account img {
 .post-preview .community {
   text-transform: uppercase;
   text-align: center;
-  background: #444;
+  background: #333;
   color: #fffded;
   font-weight: bold;
   padding: 0.6rem 1rem;
@@ -517,7 +517,7 @@ nav .account img {
   background: #5df043;
 }
 .post-page .post .community:hover a.community-link {
-  color: #444;
+  color: #333;
 }
 .post-page .post .community a.community-link {
   color: inherit;
@@ -691,7 +691,7 @@ nav .account img {
 .community-page header {
   width: 100%;
   height: 50vh;
-  background: #444;
+  background: #333;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -743,7 +743,7 @@ nav .account img {
   margin: 2rem 0;
   padding: 1rem;
   position: relative;
-  border: 1px solid #444;
+  border: 1px solid #333;
 }
 .community-page .content .post .title {
   margin-bottom: 1rem;
@@ -773,4 +773,33 @@ nav .account img {
   margin-right: 0;
   margin-left: auto;
   cursor: pointer;
+}
+.create-community-page {
+  background: #f5f5f5;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  padding: 2rem;
+}
+.create-community-page form {
+  margin-top: 5vh;
+}
+.create-community-page .form-field {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 0;
+  max-width: 500px;
+}
+.create-community-page .form-field label {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #e34275;
+  margin-bottom: 0.6rem;
+}
+.create-community-page .form-field input,
+.create-community-page .form-field textarea {
+  padding: 0.4rem;
+  border: none;
+  max-width: 100%;
 }
