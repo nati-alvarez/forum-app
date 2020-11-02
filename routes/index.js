@@ -13,6 +13,6 @@ const postViewRoutes = require("./post-views");
 router.use("/", authRoutes);
 router.use("/posts", authMiddleware.isAuthenticated, postRoutes);
 router.use("/community", authMiddleware.isAuthenticated, communityRouter);
-router.use("/post-views", [authMiddleware.isAuthenticated, authMiddleware.protected], postViewRoutes);
+router.use("/post-views", [authMiddleware.isAuthenticated, authMiddleware.apiProtected], postViewRoutes);
 
 module.exports = router;
