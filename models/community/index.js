@@ -12,6 +12,8 @@ class CommunityModel {
         "User.id as owner_id", "User.username as owner_username", "User.pfp as owner_pfp")
         .first();
 
+        if(!community) return null;
+
         const posts = await this.queryBuilder("Post")
         .join("User", "User.id", "Post.author_id")
         .leftJoin("View", "View.post_id", "Post.id")
@@ -41,6 +43,11 @@ class CommunityModel {
         const member = await this.queryBuilder("Community_Member").where({user_id: userId, community_id: community.id}).first();
         if(member) return true;
         return false;
+    }
+
+    static async createCommunity(owner_id, name, description, banner, icon){
+        const communityCreated = await this.queryBuilder("Community").insert({owner_id, name, description, banner, icon});
+        return communityCreated;
     }
 }
 
