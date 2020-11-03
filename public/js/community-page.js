@@ -113,8 +113,8 @@ function lastPostInView(className, filters){
         window.removeEventListener("scroll", window.inViewEventHandler);   
         window.inViewEventHandler = isInView;
     }
-
-    window.addEventListener("scroll", window.inViewEventHandler);
+    //don't add event listener if there aren't any posts
+    if(post) window.addEventListener("scroll", window.inViewEventHandler);
 }
 
 function createPostElement(post){
