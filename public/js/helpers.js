@@ -50,6 +50,7 @@ class RequestStatus {
     constructor(selector){
         this.loading = false,
         this.error = null
+        this.message = null
         this.statusContainer = document.querySelector(selector)
     }
 
@@ -59,7 +60,8 @@ class RequestStatus {
     renderLoading(){
         this.loading = true;
         this.error = null;
-        this.statusContainer.classList.remove("error");
+        this.message = null;
+        this.statusContainer.classList.remove("error", "success");
         this.statusContainer.textContent = "";
         this.statusContainer.textContent = "loading..."
     }
@@ -82,6 +84,22 @@ class RequestStatus {
     success(){
         this.loading = false;
         this.statusContainer.textContent = "";
+    }
+
+    /**
+     * Show success message on a successful request then clear it
+     */
+    renderSuccessMessage(message){
+        this.loading = false;
+        this.message = message;
+        this.statusContainer.textContent = this.message;
+        this.statusContainer.classList.add("success");
+
+        setTimeout(()=>{
+            this.message = null;
+            this.statusContainer.textContent = "";
+            this.statusContainer.classList.remove("success");
+        }, 5000);
     }
 
 }
