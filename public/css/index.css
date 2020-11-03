@@ -185,6 +185,11 @@ button.secondary {
 }
 .error {
   color: crimson;
+  font-weight: bold;
+}
+.success {
+  color: #1a7709;
+  font-weight: bold;
 }
 nav {
   position: sticky;
@@ -802,4 +807,7 @@ nav .account img {
   padding: 0.4rem;
   border: none;
   max-width: 100%;
+}
+.create-community-page .status {
+  margin: 1rem 0;
 }

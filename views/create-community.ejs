@@ -6,7 +6,7 @@
     <main class="create-community-page">
         <h1>Create a Community</h1>
         <p>Have an awesome idea for a new community? Fill out this form to create it!</p>
-        <form>
+        <form onsubmit="createCommunity(event)">
             <div class="form-field">
                 <label for="name">Community Name</label>
                 <input id="name" type="text" name="name"/>
@@ -24,8 +24,10 @@
                 <input type="file" name="icon" id="icon"/>
             </div>
             <button class="secondary">Create Community</button>
+            <div class="status"></div>
         </form>
     </main>
 </body>
 <%- include("partials/shared-scripts") %>
+<script src="/js/create-community.js"></script>
 </html>
