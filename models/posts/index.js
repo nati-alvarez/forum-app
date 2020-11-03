@@ -23,7 +23,7 @@ class PostsModel {
             this.andOn("Dislike.status", "<", 0);
         })
         .groupBy("Community.id", "Post.id", "User.id")
-        .countDistinct({views: "View.post_id", comments: "Comment.id", likes: "Like.id", dislikes: "Dislike.id"})
+        .countDistinct({views: "View.user_id", comments: "Comment.id", likes: "Like.id", dislikes: "Dislike.id"})
         .select("Community.id as community_id", "Community.name as community_name",
         "Community.icon as community_icon", "Post.id as post_id", 
         "Post.title as post_title", "Post.body as post_body",
