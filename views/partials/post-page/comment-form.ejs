@@ -1,7 +1,7 @@
 <section class="comment-form">
     <% if(!user) { %>
         <p>You are not logged in. You must be logged in to comment.</p>
-    <% } else if(!isMember) { %>
+    <% } else if(!canComment) { %>
         <p>You must be a part of this community to comment.</p>
     <% } else { %>
     <form>

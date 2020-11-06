@@ -12,7 +12,8 @@
     <main class="post-page">
         <% if(!err){ %>
             <%- include ("partials/post-page/post", {post})%>
-            <%- include("partials/post-page/comment-form", {isMember: post.is_member})%>    
+            <% let canComment = post.is_member || user.id == post.community_owner%>
+            <%- include("partials/post-page/comment-form", {canComment})%>    
             <% if(post) {%>
                 <div class="comments">
                     <h3>Comments</h3>
