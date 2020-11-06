@@ -709,6 +709,10 @@ nav .account img {
   display: flex;
   justify-content: space-between;
 }
+.community-page header .community-info h1,
+.community-page header .community-info .owner {
+  text-shadow: 3px 3px 3px black, -2px -2px 3px black;
+}
 .community-page header .description {
   position: absolute;
   bottom: 0;
