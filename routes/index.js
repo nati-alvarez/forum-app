@@ -9,10 +9,12 @@ const authRoutes = require("./auth");
 const postRoutes = require("./posts");
 const communityRouter = require("./community");
 const postViewRoutes = require("./post-views");
+const commentRoutes = require("./comments");
 
 router.use("/", authRoutes);
 router.use("/posts", authMiddleware.isAuthenticated, postRoutes);
 router.use("/community", authMiddleware.isAuthenticated, communityRouter);
 router.use("/post-views", [authMiddleware.isAuthenticated, authMiddleware.apiProtected], postViewRoutes);
+router.use("/comments", [authMiddleware.isAuthenticated, authMiddleware.apiProtected], commentRoutes);
 
 module.exports = router;
