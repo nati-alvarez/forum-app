@@ -729,7 +729,8 @@ nav .account img {
   margin-right: 10px;
 }
 .community-page .join-community,
-.community-page .leave-community {
+.community-page .leave-community,
+.community-page .admin-dashboard {
   margin-left: 4rem;
   margin-top: 2rem;
   font-weight: bold;

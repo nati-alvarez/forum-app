@@ -12,6 +12,9 @@
                 <button class="primary leave-community">Leave Community</button>
             <% } %>
         <% } %>
+        <% if(user.id === community.owner_id){%>
+            <button class="primary admin-dashboard">Admin Dashboard</button>    
+        <% } %>
         <div class="content">
             <section class="posts">
                 <h2>Posts</h2>
