@@ -61,7 +61,7 @@ class PostsModel {
             })
             .where({"Post.id": id})
             .select("Community.id as community_id", "Community.name as community_name", "Community.description as community_description",
-            "Community.icon as community_icon", "User.id as author_id", "User.username as author_username", "User.pfp as author_pfp",
+            "Community.icon as community_icon", "Community.owner_id as community_owner", "User.id as author_id", "User.username as author_username", "User.pfp as author_pfp",
             "Post.title as post_title", "Post.body as post_body", "Post.id as post_id")
             .count({views: "View.post_id", likes: "Like.id", dislikes: "Dislike.id"})
             .groupBy("Post.id", "User.id", "Community.id")

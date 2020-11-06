@@ -5,10 +5,12 @@
     <%- include("partials/nav", {user}) %>
     <main class="community-page">
         <%- include("partials/community-page/header", {community}) %>
-        <% if(user && !community.isMember) { %>
-            <button class="primary join-community">Join Community</button>
-        <% } else if(user){ %>
-            <button class="primary leave-community">Leave Community</button>
+        <% if(user.id !== community.owner_id) { %>
+            <% if(user && !community.isMember) { %>
+                <button class="primary join-community">Join Community</button>
+            <% } else if(user){ %>
+                <button class="primary leave-community">Leave Community</button>
+            <% } %>
         <% } %>
         <div class="content">
             <section class="posts">
