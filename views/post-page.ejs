@@ -12,18 +12,23 @@
     <main class="post-page">
         <% if(!err){ %>
             <%- include ("partials/post-page/post", {post})%>
-            <% let canComment = post.is_member || user.id == post.community_owner%>
-            <%- include("partials/post-page/comment-form", {canComment})%>    
+            
+            <% let canComment = false; %>
+            <% if(user) {%>
+                <% canComment = post.is_member || user.id == post.community_owner%>
+            <% } %>
+            <%- include("partials/post-page/comment-form", {canComment, postId: post.post_id})%>    
+            
             <% if(post) {%>
                 <div class="comments">
-                    <h3>Comments</h3>
+                    <h3>Comments <span><%= post.comments.length %></span></h3>
                     <% if(post.comments[0]){ %>
                         <% console.log(post.comments[0]) %>
                         <% post.comments.forEach(comment=>{ %>
                             <%- include("partials/post-page/comment", {comment})%>
                         <% })%>
                     <% } else { %>
-                        <p>No comments</p>
+                        <p class="no-comments">No comments</p>
                     <% } %>
                 </div>
             <% } %>

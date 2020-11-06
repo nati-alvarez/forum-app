@@ -4,7 +4,7 @@
     <% } else if(!canComment) { %>
         <p>You must be a part of this community to comment.</p>
     <% } else { %>
-    <form>
+    <form data-post-id="<%= postId %>">
         <h3>Leave a comment</h3>
         <textarea></textarea>
         <button class="primary">Send Comment</button>

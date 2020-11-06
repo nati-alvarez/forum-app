@@ -580,6 +580,12 @@ nav .account img {
   margin-top: 5vh;
   padding: 1rem;
 }
+.post-page .comments h3 span {
+  font-family: sans-serif;
+  font-weight: 500;
+  padding-left: 0.4rem;
+  font-size: 1.2rem;
+}
 .post-page .comments .comment {
   border-top: 3px solid #e34275;
   position: relative;
