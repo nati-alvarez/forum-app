@@ -1,3 +1,4 @@
+const { leftJoin } = require("../db");
 const db = require("../db");
 
 class PostsModel {
@@ -45,7 +46,8 @@ class PostsModel {
         return query;
     }
 
-    static async getById(id){
+    static async getById(post_id, user_id){
+        console.log(user_id)
         try{
             const post = await this.queryBuilder("Post")
             .join("Community", "Community.id", "Post.community_id")
@@ -55,16 +57,28 @@ class PostsModel {
                 this.on("Like.post_id", "Post.id");
                 this.andOn("Like.status", ">", 0);
             })
+            .leftJoin("Post_Vote as Has_Liked", function(){
+                this.on("Has_Liked.post_id", "Post.id");
+                this.andOn("Has_Liked.status", ">", 0);
+                if(user_id)
+                    this.andOn("Has_Liked.user_id", "=", user_id);
+            })
+            .leftJoin("Post_Vote as Has_Disliked", function(){
+                this.on("Has_Disliked.post_id", "Post.id");
+                this.andOn("Has_Disliked.status", "<", 0);
+                if(user_id)
+                    this.andOn("Has_Disliked.user_id", "=", user_id);
+            })
             .leftJoin("Post_Vote as Dislike", function(){
                 this.on("Dislike.post_id", "Post.id");
                 this.andOn("Dislike.status", "<", 0);
             })
-            .where({"Post.id": id})
+            .where({"Post.id": post_id})
             .select("Community.id as community_id", "Community.name as community_name", "Community.description as community_description",
             "Community.icon as community_icon", "Community.owner_id as community_owner", "User.id as author_id", "User.username as author_username", "User.pfp as author_pfp",
-            "Post.title as post_title", "Post.body as post_body", "Post.id as post_id")
+            "Post.title as post_title", "Post.body as post_body", "Post.id as post_id", "Has_Liked.id as has_liked", "Has_Disliked.id as has_disliked")
             .count({views: "View.post_id", likes: "Like.id", dislikes: "Dislike.id"})
-            .groupBy("Post.id", "User.id", "Community.id")
+            .groupBy("Post.id", "User.id", "Community.id", "Has_Liked.id", 'Has_Disliked.id')
             .first();
 
             if(!post){

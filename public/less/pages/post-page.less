@@ -1,6 +1,22 @@
 .post-page {
     padding-bottom: 10vh;
 
+    .likes, .dislikes {
+        cursor: pointer;
+
+        &.active {
+            font-weight: bold;
+        }
+    }
+
+    .likes.active {
+        color: darken(@primaryColor, 20%);
+    }
+
+    .dislikes.active {
+        color: crimson;
+    }
+
     .post {
         width: 80%;
         max-width: 1000px;

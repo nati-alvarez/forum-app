@@ -502,6 +502,20 @@ nav .account img {
 .post-page {
   padding-bottom: 10vh;
 }
+.post-page .likes,
+.post-page .dislikes {
+  cursor: pointer;
+}
+.post-page .likes.active,
+.post-page .dislikes.active {
+  font-weight: bold;
+}
+.post-page .likes.active {
+  color: #29be0f;
+}
+.post-page .dislikes.active {
+  color: crimson;
+}
 .post-page .post {
   width: 80%;
   max-width: 1000px;

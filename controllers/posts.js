@@ -15,8 +15,9 @@ class PostsController {
 
     static async renderPost(req, res){
         try {
+            const user_id = req.user? req.user.id: null;
             const {post_id} = req.params;
-            const post = await PostsModel.getById(post_id);
+            const post = await PostsModel.getById(post_id, user_id);
             if(!post) return res.render("post-page", {post: null, err: null, user: req.user});
             if(req.user){
                 const isMember = await CommunityModel.isMember(req.user.id, post.community_name);
@@ -27,6 +28,7 @@ class PostsController {
             res.render("post-page", {post, err: null, user: req.user});
         }catch(err){
             console.log(err);
+            res.render("post-page", {post: null, err: err.message, user: req.user});
         }
     }
 }
