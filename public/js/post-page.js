@@ -4,25 +4,29 @@ const commentCounter = document.querySelector(".comments h3 span");
 commentFormBtn = document.querySelector(".comment-form form button");
 
 let comment;
-commentBox.addEventListener("keyup", e=>{
-    comment = e.target.value.trim();
-});
+if(commentBox){
+    commentBox.addEventListener("keyup", e=>{
+        comment = e.target.value.trim();
+    });
+}
 
 const commentForm = document.querySelector(".comment-form form");
 const statusContainer = document.querySelector(".comment-form .status");
 
-commentForm.addEventListener("submit", e=>{
-    statusContainer.innerHTML = "";
-    e.preventDefault();
-    if(!comment){
-        statusContainer.innerHTML = `
-            <p class="error">Comment can't be empty</p>
-        `
-    }else {
-        let postId = commentForm.dataset.postId;
-        submitComment(comment, postId)
-    }   
-});
+if(commentForm){
+    commentForm.addEventListener("submit", e=>{
+        statusContainer.innerHTML = "";
+        e.preventDefault();
+        if(!comment){
+            statusContainer.innerHTML = `
+                <p class="error">Comment can't be empty</p>
+            `
+        }else {
+            let postId = commentForm.dataset.postId;
+            submitComment(comment, postId)
+        }   
+    });
+}
 
 async function submitComment(comment, post_id){
     commentFormBtn.disabled = true;
@@ -35,10 +39,17 @@ async function submitComment(comment, post_id){
         body: JSON.stringify({post_id, body: comment})
     });
     const data = await res.json();
-    renderNewComment(data);   
+    if(res.status === 201){
+        renderNewComment(data);   
+    }else {
+        commentFormBtn.disabled = false;
+        console.log(res, data);
+        statusContainer.innerHTML = `<p class="error">${data.message}</p>`;
+    }
 }
 
 function renderNewComment(newComment){
+    console.log(newComment);
     newComment = createCommentComponent(newComment);
     //if the user is posting the first comment, clear the placeholder message
     const commentPlaceholder = document.querySelector(".comments .no-comments");
