@@ -505,6 +505,11 @@ nav .account img {
 .post-page .likes,
 .post-page .dislikes {
   cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .post-page .likes.active,
 .post-page .dislikes.active {

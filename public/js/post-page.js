@@ -115,7 +115,7 @@ async function sendView(post_id){
         },
         body: JSON.stringify({post_id})
     });
-    data = await res.json();
+    const data = await res.json();
     
     if(res.status === 201){
         console.log("view added");
@@ -123,5 +123,41 @@ async function sendView(post_id){
         viewCount.innerHTML = (Number(viewCount.textContent) + 1) + " <i class='typcn typcn-eye'></i>";
     }else {
         console.log(data);
+    }
+}
+
+const likeButton = document.querySelector(".stats .likes");
+const dislikeButton = document.querySelector(".stats .dislikes");
+likeButton.addEventListener("click", sendVote);
+dislikeButton.addEventListener("click", sendVote);
+
+async function sendVote(){
+    const post_id = this.dataset.postId;
+    const status = Number(this.dataset.status);
+    const res = await fetch("/post-votes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({post_id, status})
+    });
+
+    if(res.status === 204){
+        //vote was removed
+        this.classList.remove("active");
+        this.innerHTML = `${Number(this.textContent) - 1} ` + this.innerHTML.slice(this.innerHTML.indexOf("<"));
+    }else if(res.status === 201){
+        //vote was made or changed
+        const otherElement = document.querySelector(".post-content .stats .active");
+        if(otherElement){
+            otherElement.classList.remove('active');
+            otherElement.innerHTML = `${Number(otherElement.textContent) - 1} ` + otherElement.innerHTML.slice(otherElement.innerHTML.indexOf("<"));
+        }
+        this.classList.add("active");
+        this.innerHTML = `${Number(this.textContent) + 1} ` + this.innerHTML.slice(this.innerHTML.indexOf("<"));
+    }else {
+        const error = await res.json();
+        console.log(res, error);
     }
 }

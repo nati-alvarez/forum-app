@@ -16,10 +16,10 @@
                 <div class="views">
                     <%= post.views %> <i class="typcn typcn-eye"></i>
                 </div>
-                <div class="likes <%= (post.has_liked)? 'active': '' %>">
+                <div data-post-id="<%= post.post_id %>" data-status="1" class="likes <%= (post.has_liked)? 'active': '' %>">
                     <%= post.likes %> <i class="typcn typcn-thumbs-up"></i>  
                 </div>
-                <div class="dislikes <%= (post.has_disliked)? 'active': '' %>">
+                <div data-post-id="<%= post.post_id %>" data-status="-1" class="dislikes <%= (post.has_disliked)? 'active': '' %>">
                     <%= post.dislikes %> <i class="typcn typcn-thumbs-down"></i>
                 </div>
             </div>
