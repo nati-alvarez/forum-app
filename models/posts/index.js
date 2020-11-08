@@ -1,4 +1,3 @@
-const { leftJoin } = require("../db");
 const db = require("../db");
 
 class PostsModel {
@@ -77,7 +76,7 @@ class PostsModel {
             .select("Community.id as community_id", "Community.name as community_name", "Community.description as community_description",
             "Community.icon as community_icon", "Community.owner_id as community_owner", "User.id as author_id", "User.username as author_username", "User.pfp as author_pfp",
             "Post.title as post_title", "Post.body as post_body", "Post.id as post_id", "Has_Liked.id as has_liked", "Has_Disliked.id as has_disliked")
-            .count({views: "View.post_id", likes: "Like.id", dislikes: "Dislike.id"})
+            .countDistinct({views: "View.user_id", likes: "Like.id", dislikes: "Dislike.id"})
             .groupBy("Post.id", "User.id", "Community.id", "Has_Liked.id", 'Has_Disliked.id')
             .first();
 
