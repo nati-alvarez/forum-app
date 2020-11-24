@@ -290,6 +290,7 @@ nav .auth-buttons {
 }
 nav .auth-buttons button {
   float: right;
+  cursor: pointer;
 }
 nav .auth-buttons .login {
   margin-right: 10px;
