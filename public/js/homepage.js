@@ -2,7 +2,7 @@
 //this way, it will always have access to the updated values and the event listener will only 
 //need to be set once at the start and for rendering new posts
 const filters = {
-    category: "Popular",
+    category: "",
     keyword: "",
 }
 let pageCounter = 1;
